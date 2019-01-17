@@ -1,0 +1,57 @@
+class Solution {
+    private final int I = 1;
+    private final int V = 5;
+    private final int X = 10;
+    private final int L = 50;
+    private final int C = 100;
+    private final int D = 500;
+    private final int M = 1000;
+    
+    private int checkValue(String x)
+    {
+        if ("I".equals(x))
+            return I;
+        else if ("V".equals(x))
+            return V;
+        else if ("X".equals(x))
+            return X;
+        else if ("L".equals(x))
+            return L;
+        else if ("C".equals(x))
+            return C;
+        else if ("D".equals(x))
+            return D;
+        else if ("M".equals(x))
+            return M;
+        return 0;
+    }
+    
+    public int romanToInt(String s)
+    {            
+        String[] charas = s.split("");
+        int result = 0;
+        
+        for (int i = 0; i < charas.length; i++)
+        {
+            int num1 = checkValue(charas[i]);
+            int num2;
+            
+            if (i + 1 < charas.length)
+            {
+                num2 = checkValue(charas[i + 1]);
+
+                if (num1 < num2)
+                {
+                    result = result - num1 + num2;
+                    i++;
+                    continue;
+                }
+            }
+
+            result = result + num1;
+
+
+        }
+        return result;
+    }
+}
